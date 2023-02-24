@@ -18,12 +18,15 @@
                     <label for="uploadFile" class="pr-5">Choose CSV File to Upload</label>
                     <div class="mt-2 sm:col-span-2">
                         <div class="flex rounded-md shadow-sm">
-                            <input type="file"  name="filename" placeholder="Upload Records" class="mb-3" />
+                            <input type="file" accept=".csv" name="filename" placeholder="Upload Records" class="mb-3" />
                         </div>
                     </div>
                 </div>
             </div>
             
+            <div v-if="errors.error">
+                <span class="text-red-500">{{errors.error}}</span>
+            </div>
 
             <div class="mx-auto flex mt-4">
                 <button type="submit" class="rounded w-32 hover:bg-blue-600 text-white bg-blue-400 p-2">
@@ -47,6 +50,9 @@ export default {
             },
             submitting: false,
             fileSupported: false,
+            errors: {
+                error: null
+            }
         }
     },
     methods: {
@@ -58,6 +64,11 @@ export default {
             .then( res => {
                 this.succesfulUpload();
                 console.log(res);
+            })
+            .catch( err => {
+                console.log(err);
+                // this.errors = err.response.data; // for actual error message
+                this.errors.error = "One or more fields in the uploaded file are invalid"
             });
         },
         succesfulUpload() {

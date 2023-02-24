@@ -1,6 +1,6 @@
-<template>
+<template class="dark">
   <div>
-    <div class="h-screen" v-if="$auth.loggedIn">
+    <div class="h-screen dark:bg-gray-800" v-if="$auth.loggedIn">
     <!-- <Login /> -->
       <div class="">
           <UiNavbarComponent />

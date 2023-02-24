@@ -118,7 +118,7 @@ export default {
         async fetchTypes() {
             await this.$axios.get(`/fetch-sendToTypes/${this.businessId}`)
             .then( res => {
-                console.log(res.data.types);
+                // console.log(res.data.types);
                 this.sendToTypes = res.data.types;
             })
             .catch(err => {
